@@ -1,0 +1,56 @@
+CREATE DATABASE IF NOT EXISTS citymate;
+USE citymate;
+
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('user','admin') NOT NULL DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE cities (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100) NOT NULL,
+  state VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL,
+  image VARCHAR(500) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE places (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  city_id INT NOT NULL,
+  name VARCHAR(160) NOT NULL,
+  category VARCHAR(80) NOT NULL,
+  description TEXT NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  latitude DECIMAL(10,7),
+  longitude DECIMAL(10,7),
+  rating DECIMAL(2,1) DEFAULT 0,
+  popularity INT DEFAULT 0,
+  opening_hours VARCHAR(160),
+  entry_fee VARCHAR(160),
+  image VARCHAR(500),
+  contact VARCHAR(160),
+  FOREIGN KEY (city_id) REFERENCES cities(id) ON DELETE CASCADE
+);
+
+CREATE TABLE favorites (
+  user_id INT NOT NULL,
+  place_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id, place_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (place_id) REFERENCES places(id) ON DELETE CASCADE
+);
+
+CREATE TABLE recently_viewed (
+  user_id INT NOT NULL,
+  place_id INT NOT NULL,
+  viewed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id, place_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (place_id) REFERENCES places(id) ON DELETE CASCADE
+);

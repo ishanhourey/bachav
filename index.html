@@ -1,59 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bachav connects people who find injured animals with nearby rescuers.">
-  <title>Bachav | Report. Connect. Rescue.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="CityMate is a smart tourist guide for discovering Indian cities like a local.">
+	<title>CityMate | Explore India Like a Local</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="toast" class="toast" role="status"></div>
-  <header class="site-header">
-    <a class="brand" href="#home" data-route="home" aria-label="Bachav home">
-      <span class="brand-mark">✣</span><span>Bachav</span>
-    </a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="#home" data-route="home">Home</a>
-      <a href="#about" data-route="about">Our mission</a>
-      <a href="#report" data-route="report">Report an animal</a>
-      <a href="#dashboard" data-route="dashboard">My dashboard</a>
-    </nav>
-    <div class="header-actions">
-      <button class="icon-button" id="notificationButton" title="Notifications" aria-label="Notifications">♧<span class="notification-dot"></span></button>
-      <button class="button button-dark" id="loginButton">Log in</button>
-      <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
-    </div>
-  </header>
-
-  <main id="app"></main>
-
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div><a class="brand footer-brand" href="#home" data-route="home"><span class="brand-mark">✣</span><span>Bachav</span></a><p>A little help can change<br>an animal's whole story.</p></div>
-      <div><h4>Explore</h4><a href="#about" data-route="about">Our mission</a><a href="#report" data-route="report">Report an animal</a><a href="#dashboard" data-route="dashboard">My dashboard</a></div>
-      <div><h4>For partners</h4><a href="#dashboard" data-route="dashboard">Rescuer dashboard</a><a href="#admin" data-route="admin">Admin console</a><a href="#about" data-route="about">Safety & privacy</a></div>
-      <div><h4>Need urgent help?</h4><p class="footer-note">Bachav coordinates reports. For immediate medical emergencies, contact a local veterinary service.</p><a class="footer-phone" href="tel:1962">1962 <span>Animal helpline</span></a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2026 Bachav. Made for kinder streets.</span><span>Report. Connect. Rescue.</span></div>
-  </footer>
-
-  <div class="modal-backdrop" id="loginModal" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-      <button class="modal-close" id="closeLogin" aria-label="Close">×</button>
-      <span class="eyebrow">Welcome back</span><h2 id="loginTitle">Sign in to Bachav</h2>
-      <p class="muted">Use a demo account to explore each role.</p>
-      <form id="loginForm" class="stack-form">
-        <label>Email<input type="email" id="loginEmail" required placeholder="you@example.com"></label>
-        <label>Password<input type="password" id="loginPassword" required placeholder="••••••••"></label>
-        <button class="button button-orange" type="submit">Continue <span>→</span></button>
-      </form>
-      <div class="demo-accounts"><strong>Demo access</strong><span>User: user@bachav.demo / DemoUser123</span><span>Rescuer: rescuer@bachav.demo / DemoRescue123</span><span>Admin: admin@bachav.demo / DemoAdmin123</span></div>
-    </div>
-  </div>
-  <script src="app.js"></script>
+	<div id="toast" class="toast" role="status" aria-live="polite"></div>
+	<header class="header"><a class="logo" href="#home"><span class="logo-mark">✦</span><span>City<span>Mate</span></span></a><nav id="nav"><a href="#home">Home</a><a href="#cities">Cities</a><a href="#favorites">Favorites</a><a href="#about">How it works</a></nav><div class="header-actions"><button class="icon-btn" id="searchToggle" aria-label="Search">⌕</button><button class="btn btn-dark" id="authButton">Log in</button><button class="menu-btn" id="menuButton" aria-label="Open menu">☰</button></div></header>
+	<main id="app"></main>
+	<footer class="footer"><div><a class="logo" href="#home"><span class="logo-mark">✦</span><span>City<span>Mate</span></span></a><p>Your thoughtful guide to India's unforgettable places.</p></div><div><b>Explore</b><a href="#cities">Cities</a><a href="#favorites">Saved places</a></div><div><b>Project</b><a href="#about">How it works</a><a href="README.md">Documentation</a></div><div><b>Built for discovery</b><p>Curated demo data for a B.Tech minor project.</p></div><small>© 2026 CityMate · Explore India like a local.</small></footer>
+	<div class="modal-backdrop" id="authModal" hidden><section class="modal" role="dialog" aria-modal="true"><button class="close" id="closeModal">×</button><span class="kicker">Welcome to CityMate</span><h2 id="authTitle">Log in</h2><p id="authSubtitle" class="muted">Your next memorable stop is waiting.</p><form id="authForm"><label id="nameField" hidden>Full name<input id="authName" autocomplete="name"></label><label>Email<input id="authEmail" type="email" required autocomplete="email"></label><label>Password<input id="authPassword" type="password" minlength="6" required autocomplete="current-password"></label><label id="confirmField" hidden>Confirm password<input id="authConfirm" type="password" minlength="6" autocomplete="new-password"></label><p id="authError" class="error" role="alert"></p><button class="btn btn-coral" type="submit" id="authSubmit">Log in <span>→</span></button></form><button class="switch-auth" id="switchAuth">New here? Create an account</button></section></div>
+	<script src="app.js"></script>
 </body>
 </html>
+

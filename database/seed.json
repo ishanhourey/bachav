@@ -1,0 +1,5 @@
+{
+  "note": "The browser demo seeds this same content from app.js. This compact reference is included for database migration planning.",
+  "cities": ["Indore", "Bhopal", "Ujjain", "Jaipur", "Delhi", "Mumbai", "Agra", "Varanasi"],
+  "featuredPlaces": ["Rajwada Palace", "Lal Bagh Palace", "Sarafa Bazaar", "Chappan Dukan", "Patalpani", "Regional Park", "Central Museum", "Annapurna Temple"]
+}
