@@ -1,88 +1,62 @@
-# CityMate - Smart Tourist Guide for Indian Cities
+# Bachav
 
-CityMate is a functional, responsive tourist guide for discovering Indian cities like a local. It supports city selection, category browsing, search, sorting, place details, Google Maps navigation, registration, login, recently viewed places, and per-user favorites.
+**Report. Connect. Rescue.**
 
-## Why this project
+Bachav is a beginner-friendly, functional front-end prototype for an animal rescue and emergency reporting platform. It demonstrates the complete college-project flow in the browser:
 
-Tourists often know the name of a city but not the places that make it memorable. CityMate organizes attractions, food, history, nature, cafes, shopping and religious places into one simple experience.
+`Citizen report -> Case ID -> Rescuer accepts -> Status updates -> Citizen tracks`
 
-## Features
+## Run it
 
-- Eight seeded cities: Indore, Bhopal, Ujjain, Jaipur, Delhi, Mumbai, Agra and Varanasi.
-- Indore demo data including Rajwada Palace, Lal Bagh Palace, Sarafa Bazaar, Chappan Dukan, Patalpani, Regional Park, Central Museum and Annapurna Temple.
-- Registration with validation and SHA-256 password hashing through Web Crypto.
-- Login, persistent browser session and logout.
-- IndexedDB persistence for users, cities, places, favorites and viewed places.
-- Search by place name, category or description.
-- Category filters and sorting by popularity, rating and name.
-- Detailed place pages with hours, fee, address, rating and contact notes.
-- Google Maps search and directions links without an embedded secret API key.
-- Responsive navigation and mobile layouts.
-- Empty states, validation errors and user-friendly notifications.
+1. Install VS Code and a modern browser such as Chrome or Edge.
+2. Open this folder in VS Code.
+3. Open `index.html` in a browser. The VS Code Live Server extension is optional, but recommended for a smoother local experience.
+4. Use the **Log in** button to try one of the demo roles below.
 
-## Technology stack
+No npm, database server, API key, or build step is required for this demonstration. Cases and the signed-in user are stored in the browser's `localStorage`, so refreshing the page keeps your demo data. Use the browser developer tools to clear site data and reset the demo.
 
-- HTML5, CSS3 and modern browser JavaScript.
-- IndexedDB for a proper local relational-style data store during demonstration.
-- Web Crypto API for password hashing.
-- Google Maps URL integration; no API key is required for destination links.
-- No build step or dependency folder is needed for the included demo.
+## Demo accounts
 
-## Run locally
+These credentials are fictional and for demonstration only.
 
-1. Open this folder in VS Code.
-2. Open `index.html` in Chrome or Edge, or serve the folder with VS Code Live Server.
-3. Visit `#cities`, choose a city, search or filter places, and open a place detail page.
-4. Create an account from **Log in**. The browser will create the IndexedDB database automatically.
+| Role | Email | Password |
+| --- | --- | --- |
+| Citizen | `user@bachav.demo` | `DemoUser123` |
+| Rescuer | `rescuer@bachav.demo` | `DemoRescue123` |
+| Administrator | `admin@bachav.demo` | `DemoAdmin123` |
 
-A local server is recommended because browser security policies vary when files are opened directly. The app does not require npm for the included browser version.
+## Main files
 
-## Data and database setup
-
-On the first launch, `app.js` seeds the `cities` and `places` IndexedDB object stores. User accounts and favorites are created as the user works. Browser DevTools > Application > IndexedDB can be used to inspect the database.
-
-`database/schema.sql` contains the equivalent relational schema for a future Node/Express + MySQL implementation. It is included for the college project architecture and viva discussion.
-
-## Environment variables and Google Maps
-
-The current implementation uses public Google Maps destination URLs and therefore does not expose credentials. `.env.example` documents the optional values for a production backend or an embedded Maps JavaScript API:
-
-```env
-GOOGLE_MAPS_API_KEY=your_api_key_here
-DATABASE_URL=mysql://user:password@localhost:3306/citymate
-SESSION_SECRET=replace_with_a_long_random_value
-```
-
-Never commit a real API key or password. If an embedded map is added later, load the key from a server-side environment configuration.
-
-## Project structure
-
-```text
-CityMate/
-├── index.html                 # application shell and authentication modal
-├── styles.css                 # responsive visual system
-├── app.js                    # data, IndexedDB, routes, UI and interactions
-├── database/schema.sql       # production-oriented relational schema
-├── database/seed.json        # starter data reference
-├── .env.example              # safe configuration template
-├── PROJECT_DOCUMENTATION.md  # viva-friendly report
-└── CityMate_Tourist_Guide_Minor_Project.zip
-```
+- `index.html` - application shell, accessible navigation, login modal, and footer
+- `styles.css` - responsive visual system and page layouts
+- `app.js` - seeded data, routing, authentication demo, report form, upload preview, geolocation request, case workflow, and notifications
+- `demo.py` - original empty workspace file, retained unchanged
 
 ## Demonstration checklist
 
-1. Choose Indore from the home page.
-2. Search for `Rajwada` and open the result.
-3. Use **Get directions** and confirm the Google Maps URL opens.
-4. Register a new account, save the place, and open **Favorites**.
-5. Log out and confirm favorites are isolated to the account.
-6. Try a category chip such as **Food & Restaurants** and sort by rating.
-7. Resize the browser to verify the mobile navigation and responsive cards.
+1. Open `#report` and submit a Dog or Cat report with a location and description.
+2. Confirm the generated case ID and `Reported` status.
+3. Sign out, log in as the rescuer, and open the new case from **Available cases**.
+4. Use **Accept rescue** / **Update status** repeatedly to show the timeline moving toward `Case Resolved`.
+5. Sign in as the citizen again and open **My dashboard** to show the same case status.
+6. Sign in as the administrator and open **Admin console** to show network statistics and reports.
 
-## Production extension
+## Technical extension path
 
-For deployment, replace the IndexedDB service with an Express API, move password hashing to the server with bcrypt or Argon2, use secure HTTP-only sessions, validate all request bodies, and connect the tables in `database/schema.sql` to MySQL or PostgreSQL. Add server-side admin middleware before exposing city/place CRUD operations.
+For a production version, replace the demo objects and `localStorage` calls in `app.js` with a backend API and database. Suggested tables are `users`, `rescuers`, `animal_reports`, `rescue_updates`, and `notifications`. Store password hashes on the server, protect role-based routes there, and use a maps provider such as OpenStreetMap/Leaflet or Google Maps through environment configuration. The current map is a visual fallback and the AI section is explicitly a prototype upload acknowledgement, not a medical diagnosis or a real classification model.
 
-## Limitations of the classroom demo
+## Minor-project presentation notes
 
-Venue hours, fees and contacts are explicitly marked as demo information where appropriate. The app uses curated remote Unsplash images and local browser persistence, so it is ready for a viva and functional demonstration but is not a multi-device production service yet.
+**Problem:** People find injured animals but cannot quickly reach a suitable local responder, while rescuers lack structured, timely case information.
+
+**Solution:** Bachav creates a shared reporting and coordination channel for citizens, verified rescuers, and administrators.
+
+**Objectives:** Capture reliable case details, connect reports with nearby responders, provide transparent status tracking, and improve accountability.
+
+**Modules:** Authentication and roles, emergency report intake, photo preview, location request, citizen dashboard, rescuer queue, case status workflow, admin monitoring, notifications, and future AI integration.
+
+**Technology:** HTML5, CSS3, vanilla JavaScript, browser Geolocation API, FileReader API, and localStorage for the classroom prototype.
+
+**Future scope:** Secure backend authentication, PostgreSQL or MongoDB persistence, verified rescuer onboarding, real map markers, SMS/email notifications, analytics, and a trained image classification service.
+
+**Limitations:** This prototype has no server-side authentication, real-time notifications, cloud image storage, or medical diagnosis. It is suitable for demonstration and UI/workflow evaluation, not real emergency operations.
